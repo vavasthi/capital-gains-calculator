@@ -1,0 +1,77 @@
+logging:
+  level:
+    #        root: DEBUG
+    org:
+      springframework:
+        cloud:
+          gateway: DEBUG
+        security : DEBUG
+
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  security:
+    enabled: false
+mongodb:
+  identity:
+    uri: ${MONGODB_URL}
+    authenticationDatabase: ${MONGODB_ADMIN_DATABASE}
+    host: ${MONGODB_HOST}
+    port: ${MONGODB_PORT}
+    database: ${MONGODB_DATABASE}
+    username: ${MONGODB_USER}
+    password: ${MONGODB_PASSWD}
+#        auto-index-creation: true
+server:
+  port: 8080
+  tomcat:
+    max-swallow-size: 100MB
+
+
+spring:
+  data:
+    mongodb:
+      uri: ${MONGODB_URL}
+      authenticationDatabase: ${MONGODB_ADMIN_DATABASE}
+      host: ${MONGODB_HOST}
+      port: ${MONGODB_PORT}
+      database: ${MONGODB_DATABASE}
+      username: ${MONGODB_USER}
+      password: ${MONGODB_PASSWD}
+      auto-index-creation: true
+  application:
+    name: capital-gains-calculator
+  #    mvc:
+  #        static-path-pattern: /content/**
+  web:
+    resources:
+      static-locations: classpath:/webapp,classpath:/static
+  http:
+    multipart:
+      enabled: true
+      max-file-size: 50MB
+      max-request-size: 50MB
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+
+application:
+  security:
+    jwt:
+      secret-key: ${JWT_PRIVATE_KEY}
+      expiration: 86400000 # a day
+      refresh-token:
+        expiration: 604800000 # 7 days
+
+varahamihir:
+  content:
+    basepath: content
+    google-service-account: ${GOOGLE_AVASTHI_COM_SERVICE_ACCOUNT}
